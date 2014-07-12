@@ -11,11 +11,11 @@ namespace Assets.Source
         public float ElapsedTime;
         public Sprite RedGem;
         public Sprite BlueGem;
-        public Color Red = new Color(234f / 255f, 153f / 153f, 255f / 255f, 1f);
-        public Color Blue = new Color(178f / 255f, 209f / 255f, 255f / 255f, 1f);
+        public Color Red;
+        public Color Blue;
 
-        private const int Dx = 11;
-        private const int Dy = 11;
+        private const int Dx = 8;
+        private const int Dy = 8;
 
         public AudioClip[] Tones;
 
@@ -46,8 +46,6 @@ namespace Assets.Source
                     Grid[x, y] = note;
                     note.transform.position = new Vector3(x, y * (1 + yPadding) - (1 + yPadding));
 
-                    Debug.Log(Red);
-                    Debug.Log(Blue);
                     note.renderer.material.color = Blue;
 
                     /* 
@@ -63,7 +61,7 @@ namespace Assets.Source
                     * h2 
                     * c3
                     */
-                    note.GetComponent<AudioSource>().clip = Tones[y];
+                    note.GetComponent<AudioSource>().clip = Tones[y+1];
                 }
             }
         }
