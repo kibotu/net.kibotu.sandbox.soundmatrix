@@ -1,15 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Source
 {
     public class NativeParse
     {
-        #if UNITY_IPHONE && !UNITY_EDITOR
-
-            public static void Initialize(string applicationId, string clientKey) {}
-            public static void SaveInBackground(string parseObject, string key, string value) {}
-
-        #elif UNITY_ANDROID && !UNITY_EDITOR
+//        #if UNITY_IPHONE && !UNITY_EDITOR
+//
+//        #elif UNITY_ANDROID && !UNITY_EDITOR
 
             static AndroidJavaClass Parse
             {
@@ -23,20 +21,47 @@ namespace Assets.Source
                 Parse.CallStatic("initialize", jcUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity"), applicationId, clientKey);
             }
 
-            public static void SaveInBackground(string parseObject, string key, string value)
+            public static string SaveInBackground(string parseObject, string key, string value)
             {
                 Debug.Log("Initialize " + parseObject + " " + key + " " + value); 
 
                 var po = new AndroidJavaObject("com.parse.ParseObject", parseObject);
                 po.Call("put", key, value);
                 po.Call("saveInBackground");
+                return po.Call<String>("getObjectId");
             }
-        
-        #else
 
-            public static void Initialize(string applicationId, string clientKey){}
-            public static void SaveInBackground(string parseObject, string key, string value) { }
+            public static void LoadInBackground(string parseObject, string objectId)
+            {
+                var query = new AndroidJavaClass("com.parse.ParseQuery").CallStatic<AndroidJavaObject>("getQuery", parseObject);
+                query.Call("getInBackground", objectId, new AndroidJavaObject("java.lang.Object"));
 
-        #endif
+//                var cb = new GetCallback();
+//                cb.done(new AndroidJavaObject("com.parse.ParseObject", parseObject), null);
+            }
+
+            public class GetCallback : AndroidJavaObject
+            {
+                public GetCallback() : base("com.parse.GetCallback") { }
+
+                public void done(AndroidJavaObject parseObject, AndroidJavaObject parseException)
+                {  
+                        if (parseException == null) {
+                            Debug.Log("parseObject");
+                            Debug.Log("parseObject: " + parseObject.Call<String>("getObjectId"));
+                        } else {
+                            // something went wrong
+                            Debug.Log("something went wrong");
+                        }
+                }
+            }
+
+//        #else
+//
+//            public static void Initialize(string applicationId, string clientKey) {}
+//            public static string SaveInBackground(string parseObject, string key, string value) { return "not implemented."; }
+//            public static void LoadInBackground(string parseObject, string objectId) {}
+//
+//        #endif
     }
 }

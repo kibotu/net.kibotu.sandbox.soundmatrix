@@ -13,7 +13,6 @@ namespace Assets.Source
         public bool IsActive;
         public bool IsRunning;
         public int ExplosionId;
-        public Color lightning = new Color(0.3f,0.3f,0.3f);
 
         public void Start()
         {
@@ -33,11 +32,11 @@ namespace Assets.Source
 
         public void Update()
         {
-            if (IsActive && !IsRunning && Math.Abs(Main.Metronom() - gameObject.transform.position.x) < 0.0001f)
-            {
-                IsRunning = true;
-                PlaySoundWithCallback(audio.clip, AudioFinished);
-            }
+//            if (IsActive && !IsRunning && Math.Abs(Main.Metronom() - gameObject.transform.position.x) < 0.0001f)
+//            {
+//                IsRunning = true;
+//                PlaySoundWithCallback(audio.clip, AudioFinished);
+//            }
         }
 
         void AudioFinished()
@@ -54,7 +53,7 @@ namespace Assets.Source
             audio.PlayOneShot(clip);
 
             // lighten
-            renderer.material.color += lightning;
+            renderer.material = Main.Lightened;
 
             // particles
             ExplodeAtPosition(clip.length);
@@ -83,7 +82,7 @@ namespace Assets.Source
 
         public void Dye()
         {
-            renderer.material.color = IsActive ? Main.Red : Main.Blue;
+            renderer.material = IsActive ? Main.Active : Main.Inactive;
         }
 
         public void ExplodeAtPosition(float duration)
