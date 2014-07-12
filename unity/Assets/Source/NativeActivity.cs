@@ -5,34 +5,26 @@ namespace Assets.Source
 {
     public class NativeActivity : MonoBehaviour {
 
-        public void OnAwake()
+        public void Awake()
         {
-//            Debug.Log("OnAwake");
-            
-            const string flurrykey = "S5MMHGJYDVDNX2HTX4CR";
-
-            NativeFlurry.OnStartSession(flurrykey);
+            NativeFlurry.OnStartSession("S5MMHGJYDVDNX2HTX4CR");
+            NativeParse.Initialize("JDbBWkOOUksLw7EefanIfckq4Rme9A62pF6uz4Qb", "y6dVB0I6RKCMiKjPxF3el2O1ErZp2MdCgIygu6RQ");
         }
 
         public void OnStart()
         {
-//            Debug.Log("OnStart");
         }
-
+        
         public void OnApplicationPause(bool pauseStatus)
         {
-//            Debug.Log("OnApplicationPause " + pauseStatus);
         }
 
         public void OnApplicationFocus(bool focusStatus)
         {
-//            Debug.Log("OnApplicationFocus " + focusStatus);
         }
 
         public void OnApplicationQuit()
         {
-//            Debug.Log("OnApplicationQuit");
-
             NativeFlurry.OnEndSession();
         }
     }

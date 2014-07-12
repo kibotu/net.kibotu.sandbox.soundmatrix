@@ -64,6 +64,7 @@
      <Compile Include="Assets\Source\Main.cs" />
      <Compile Include="Assets\Source\NativeActivity.cs" />
      <Compile Include="Assets\Source\NativeFlurry.cs" />
+     <Compile Include="Assets\Source\NativeParse.cs" />
      <Compile Include="Assets\Source\Noise.cs" />
      <Compile Include="Assets\Source\NoteHandler.cs" />
      <Compile Include="Assets\Source\PianoKey.cs" />
