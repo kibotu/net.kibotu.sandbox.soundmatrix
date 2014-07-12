@@ -621,6 +621,7 @@
      <Compile Include="Assets\Source\RotateTowardsMouse.cs" />
      <Compile Include="Assets\Source\Sinus.cs" />
      <Compile Include="Assets\Source\Slider.cs" />
+     <Compile Include="Assets\Source\SoundAgent.cs" />
      <Compile Include="Assets\Source\TouchToMouseConverter.cs" />
      <Compile Include="Assets\Source\Utils.cs" />
      <Compile Include="Assets\Source\Wobble.cs" />

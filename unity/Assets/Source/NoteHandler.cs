@@ -13,10 +13,14 @@ namespace Assets.Source
         public bool IsActive;
         public bool IsRunning;
         public int ExplosionId;
+        public Grid Grid;
+        public int Row;
+        public int Col;
 
         public void Start()
         {
             Main = GameObject.Find("Main").GetComponent<Main>();
+            Grid = transform.parent.parent.GetComponent<Grid>();
         }
 
         void Toggle()
@@ -32,11 +36,11 @@ namespace Assets.Source
 
         public void Update()
         {
-//            if (IsActive && !IsRunning && Math.Abs(Main.Metronom() - gameObject.transform.position.x) < 0.0001f)
-//            {
-//                IsRunning = true;
-//                PlaySoundWithCallback(audio.clip, AudioFinished);
-//            }
+            if (IsActive && !IsRunning && Grid.IsActiveCell(Row,Col))
+            {
+                IsRunning = true;
+                PlaySoundWithCallback(audio.clip, AudioFinished);
+            }
         }
 
         void AudioFinished()
