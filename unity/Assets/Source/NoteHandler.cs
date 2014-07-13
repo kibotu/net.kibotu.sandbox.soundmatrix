@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Assets.Source
@@ -10,7 +9,6 @@ namespace Assets.Source
 
         private Main _main;
         public int ExplosionId;
-        private Grid _grid;
         public int Row;
         public int Col;
 
@@ -19,7 +17,6 @@ namespace Assets.Source
         public void Start()
         {
             _main = GameObject.Find("Main").GetComponent<Main>();
-            _grid = transform.parent.parent.GetComponent<Grid>();
             _fsm = GetComponent<PlayMakerFSM>();
         }
 
@@ -61,8 +58,6 @@ namespace Assets.Source
             if (wobble != null) wobble.Finish();
 
             _fsm.SendEvent("TonePlayed");
-
-            Activating();
         }
 
         public void PlaySoundWithCallback(AudioClip clip, AudioCallback callback)
@@ -77,11 +72,6 @@ namespace Assets.Source
             callback();
         }
 
-        public void Reset()
-        {
-            
-        }
-
         public void ExplodeAtPosition(float duration)
         {
             var explosion = (GameObject)Instantiate(_main.Explosions[ExplosionId]);
@@ -92,9 +82,10 @@ namespace Assets.Source
             explosion.transform.position = pos;
         }
 
-        public void PlayScaleAnimation()
+        public void Reset()
         {
-            var speed =_grid.Metronom.IntervalSpeed;
+            Debug.Log("Reset");
+            _fsm.SendEvent("Reset");
         }
     }
 }

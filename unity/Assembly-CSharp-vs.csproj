@@ -59,6 +59,7 @@
      <Compile Include="Assets\Detonator\System\DetonatorSound.cs" />
      <Compile Include="Assets\Detonator\System\DetonatorSparks.cs" />
      <Compile Include="Assets\Detonator\System\DetonatorSpray.cs" />
+     <Compile Include="Assets\Pixelplacement\iTweenPath\iTweenPath.cs" />
      <Compile Include="Assets\PlayMaker Utils\Event Properties\Actions\GetEventProperties.cs" />
      <Compile Include="Assets\PlayMaker Utils\Event Properties\Actions\SetEventProperties.cs" />
      <Compile Include="Assets\PlayMaker Utils\Event Properties\PlayMakerEventPropertiesProxy.cs" />
@@ -614,9 +615,12 @@
      <Compile Include="Assets\PlayMaker\Include\iTweenFSMEvents.cs" />
      <Compile Include="Assets\Scripts\MySendMessage.cs" />
      <Compile Include="Assets\Scripts\MySendMessageReceiveScript.cs" />
+     <Compile Include="Assets\Source\BackButton.cs" />
      <Compile Include="Assets\Source\CameraIdle.cs" />
+     <Compile Include="Assets\Source\CameraMovement.cs" />
      <Compile Include="Assets\Source\CameraShake.cs" />
      <Compile Include="Assets\Source\DebugHelper.cs" />
+     <Compile Include="Assets\Source\Fps.cs" />
      <Compile Include="Assets\Source\Grid.cs" />
      <Compile Include="Assets\Source\GridManager.cs" />
      <Compile Include="Assets\Source\Main.cs" />

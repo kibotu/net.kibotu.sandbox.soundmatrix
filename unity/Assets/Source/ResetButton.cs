@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using UnityEngine;
+﻿using UnityEngine;
 //using Parse;
 
 namespace Assets.Source
@@ -17,7 +16,7 @@ namespace Assets.Source
             if (GUI.Button(new Rect(Screen.width / 12f, Screen.height - Screen.height / 12f, Screen.width / 10f, Screen.height / 20f), "Reset"))
             {
 
-                guiText.fontSize = Screen.width / 25;
+//                guiText.fontSize = Screen.width / 25;
 
 //                ParseObject testObject = new ParseObject("TestObject");
 //                testObject["test"] = "tester";
@@ -32,10 +31,10 @@ namespace Assets.Source
 //				});
 
 
-//                foreach (var note in GameObject.Find("Main").GetComponent<Main>().Grid)
-//                {
-//                    note.GetComponent<NoteHandler>().Reset();
-//                }
+                foreach (var note in GameObject.Find("Grids").GetComponentsInChildren<NoteHandler>())
+                {
+                    note.Reset();                        
+                }
                 
             }
         }

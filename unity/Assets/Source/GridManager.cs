@@ -10,10 +10,9 @@ namespace Assets.Source
 
         public void Generate(int rows, int cols)
         {
-            Grids = new GameObject[rows, cols];
+            var main = GameObject.Find("Main").GetComponent<Main>();
 
-            var xPadding = 1f;
-            var yPadding = 1f;
+            Grids = new GameObject[rows, cols];
 
             for (var y = 0; y < cols; ++y)
             {
@@ -25,13 +24,13 @@ namespace Assets.Source
                     grid.Rows = 8;
                     grid.Cols = 8;
                     grid.Generate();
-                    go.transform.position = new Vector3(x * (1 + 10), y * (1 * 12), 0);
+                    go.transform.position = new Vector3(x * (1 + main.GridPadding.x), y * (1 * main.GridPadding.y), 0);
                     go.transform.parent = gameObject.transform;
                 }
             }
         }
 
-        public void Start()
+        public void Awake()
         {
             Generate(Rows,Cols);
         }

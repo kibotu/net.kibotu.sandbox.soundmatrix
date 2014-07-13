@@ -12,6 +12,7 @@ namespace Assets.Source
         public Material LightenedBlue;
         public Material White;
         public float WobbleFactor;
+        public Vector2 GridPadding;
 
         /// <summary>
         /// c1 

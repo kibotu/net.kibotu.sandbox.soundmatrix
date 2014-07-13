@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using HutongGames.PlayMaker;
-using NoDisOne.PlayMaker.Actions;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Source
 {
@@ -12,10 +9,14 @@ namespace Assets.Source
         private int _counter;
         public float IntervalSpeed;
 
-        public void Start ()
+        public void Awake ()
+        {
+            _fsm = GetComponent<PlayMakerFSM>();
+        }
+
+        public void Start()
         {
             _grid = transform.parent.GetComponent<Grid>();
-            _fsm = GetComponent<PlayMakerFSM>();
         }
 
         public void Increment()
