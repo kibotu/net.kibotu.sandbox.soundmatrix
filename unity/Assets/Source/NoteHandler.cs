@@ -8,69 +8,70 @@ namespace Assets.Source
     {
         public delegate void AudioCallback();
 
-        public Main Main;
-
-        public bool IsActive;
-        public bool IsRunning;
+        private Main _main;
         public int ExplosionId;
-        public Grid Grid;
+        private Grid _grid;
         public int Row;
         public int Col;
 
+        private PlayMakerFSM _fsm;
+
         public void Start()
         {
-            Main = GameObject.Find("Main").GetComponent<Main>();
-            Grid = transform.parent.parent.GetComponent<Grid>();
+            _main = GameObject.Find("Main").GetComponent<Main>();
+            _grid = transform.parent.parent.GetComponent<Grid>();
+            _fsm = GetComponent<PlayMakerFSM>();
         }
 
-        void Toggle()
+        public void Activating()
         {
-            IsActive = !IsActive;
-            Dye();
+            renderer.material = _main.Active;
         }
 
-        void OnMouseDown()
+        public void Deactivating()
         {
-            Toggle();
+            renderer.material = _main.Inactive;
         }
 
-        public void Update()
+        public void HitByMetronom()
         {
-            if (IsActive && !IsRunning && Grid.IsActiveCell(Row,Col))
-            {
-                IsRunning = true;
-                PlaySoundWithCallback(audio.clip, AudioFinished);
-            }
+            _fsm.SendEvent("Metronom");
+        }
+
+        public void PlayNote()
+        {
+            //  play sound
+            PlaySoundWithCallback(audio.clip, AudioFinished);
+
+            // lighten
+            renderer.material = _main.LightenedRed;
+
+            // particles
+            ExplodeAtPosition(audio.clip.length);
+
+            // wobble
+//            var wobble = gameObject.AddComponent<Wobble>();
+//            wobble.Duration = audio.clip.length / 2f;
+//            wobble.Factor = Main.WobbleFactor;
         }
 
         void AudioFinished()
         {
-            IsRunning = false;
-            Dye();
-
             var wobble = gameObject.GetComponent<Wobble>();
             if (wobble != null) wobble.Finish();
+
+            _fsm.SendEvent("TonePlayed");
+
+            Activating();
         }
 
-        public void PlaySoundWithCallback(AudioClip clip, PianoKeyScript.AudioCallback callback)
+        public void PlaySoundWithCallback(AudioClip clip, AudioCallback callback)
         {
             audio.PlayOneShot(clip);
-
-            // lighten
-            renderer.material = Main.Lightened;
-
-            // particles
-            ExplodeAtPosition(clip.length);
-
-            // wobble
-            var wobble = gameObject.AddComponent<Wobble>();
-            wobble.Duration = clip.length / 2f;
-            wobble.Factor = 0.01f;
-
             StartCoroutine(DelayedCallback(clip.length, callback));
         }
 
-        private IEnumerator DelayedCallback(float time, PianoKeyScript.AudioCallback callback)
+        private IEnumerator DelayedCallback(float time, AudioCallback callback)
         {
             yield return new WaitForSeconds(time);
             callback();
@@ -78,25 +79,22 @@ namespace Assets.Source
 
         public void Reset()
         {
-            IsActive = false;
-            Dye();
-            var wobble = gameObject.GetComponent<Wobble>();
-            if(wobble != null) wobble.Finish();
-        }
-
-        public void Dye()
-        {
-            renderer.material = IsActive ? Main.Active : Main.Inactive;
+            
         }
 
         public void ExplodeAtPosition(float duration)
         {
-            var explosion = (GameObject)Instantiate(Main.Explosions[ExplosionId]);
+            var explosion = (GameObject)Instantiate(_main.Explosions[ExplosionId]);
             var pos = gameObject.transform.position;
             pos.z = -1.001f;
            // explosion.GetComponent<Detonator>().duration = duration;
             explosion.GetComponent<ParticleRenderer>().lengthScale = duration;
             explosion.transform.position = pos;
+        }
+
+        public void PlayScaleAnimation()
+        {
+            var speed =_grid.Metronom.IntervalSpeed;
         }
     }
 }

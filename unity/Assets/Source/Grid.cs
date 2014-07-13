@@ -1,4 +1,4 @@
-﻿using System;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Source
@@ -11,9 +11,10 @@ namespace Assets.Source
 
         public float Speed;
         public string Name;
+        public int Priority;
 
-        private GameObject _metronom;
-        private int _metroCounter;
+        public Metronom Metronom;
+//        private int _metroCounter;
 
         public void Generate ()
         {
@@ -22,11 +23,12 @@ namespace Assets.Source
             var parent = new GameObject("Notes").transform;
             parent.parent = transform;
 
-            _metronom = (GameObject)Instantiate(main.Sprite);
-            _metronom.name = "Metronom";
-            _metronom.renderer.material = main.White;
-            _metronom.transform.position = new Vector3(0, Cols);
-            _metronom.transform.parent = transform;
+            var metronom = (GameObject)Instantiate(main.Metronom);
+            metronom.transform.parent = transform;
+            metronom.name = "Metronom";
+            metronom.transform.position = new Vector3(0, Cols);
+            Metronom = metronom.GetComponent<Metronom>();
+            Metronom.IntervalSpeed = 1f;
 
             ToneGrid = new GameObject[Rows, Cols];
             const float xPadding = 0.0f;
@@ -52,26 +54,11 @@ namespace Assets.Source
             }
         }
 
-        public int ActiveGridRow()
+        public void HitColumn(int column)
         {
-            return (int) _metronom.transform.localPosition.x;
-        }
-
-        public bool IsActiveCell(int row, int col)
-        {
-            return row == ActiveGridRow();
-        }
-
-        public float Interval = 1f;
-        public float ElapsedTime;
-
-        public void Update()
-        {
-            ElapsedTime += Time.deltaTime;
-            if (ElapsedTime >= Interval)
+            for (var x = 0; x < Rows; ++x)
             {
-                ElapsedTime -= Interval;
-                _metronom.transform.localPosition = new Vector3(++_metroCounter%Rows, Cols);
+                ToneGrid[column, x].SendMessage("HitByMetronom");
             }
         }
     }

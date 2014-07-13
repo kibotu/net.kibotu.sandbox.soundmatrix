@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Source
 {
     public class Main : MonoBehaviour
     {
         public GameObject Sprite;
+        public GameObject Metronom;
         public Material Active;
         public Material Inactive;
-        public Material Lightened;
+        public Material LightenedRed;
+        public Material LightenedBlue;
         public Material White;
+        public float WobbleFactor;
 
         /// <summary>
         /// c1 

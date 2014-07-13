@@ -165,11 +165,11 @@
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>D:/programming/sandbox/soundmatrix/unity/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
- <Reference Include="Parse.Unity">
- <HintPath>D:/programming/sandbox/soundmatrix/unity/Assets/Plugins/Parse.Unity/Parse.Unity.dll</HintPath>
- </Reference>
  <Reference Include="PlayMaker">
  <HintPath>D:/programming/sandbox/soundmatrix/unity/Assets/PlayMaker/PlayMaker.dll</HintPath>
+ </Reference>
+ <Reference Include="Parse.Unity">
+ <HintPath>D:/programming/sandbox/soundmatrix/unity/Assets/Plugins/Parse.Unity/Parse.Unity.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

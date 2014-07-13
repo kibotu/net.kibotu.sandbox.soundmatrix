@@ -162,11 +162,11 @@
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\FXAAPreset2.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
- <Reference Include="Parse.Unity">
- <HintPath>D:/programming/sandbox/soundmatrix/unity/Assets/Plugins/Parse.Unity/Parse.Unity.dll</HintPath>
- </Reference>
  <Reference Include="PlayMaker">
  <HintPath>D:/programming/sandbox/soundmatrix/unity/Assets/PlayMaker/PlayMaker.dll</HintPath>
+ </Reference>
+ <Reference Include="Parse.Unity">
+ <HintPath>D:/programming/sandbox/soundmatrix/unity/Assets/Plugins/Parse.Unity/Parse.Unity.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

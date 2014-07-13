@@ -59,6 +59,13 @@
      <Compile Include="Assets\Detonator\System\DetonatorSound.cs" />
      <Compile Include="Assets\Detonator\System\DetonatorSparks.cs" />
      <Compile Include="Assets\Detonator\System\DetonatorSpray.cs" />
+     <Compile Include="Assets\PlayMaker Utils\Event Properties\Actions\GetEventProperties.cs" />
+     <Compile Include="Assets\PlayMaker Utils\Event Properties\Actions\SetEventProperties.cs" />
+     <Compile Include="Assets\PlayMaker Utils\Event Properties\PlayMakerEventPropertiesProxy.cs" />
+     <Compile Include="Assets\PlayMaker Utils\PlayMakerUtils.cs" />
+     <Compile Include="Assets\PlayMaker Utils\PlayMakerUtils_Events.cs" />
+     <Compile Include="Assets\PlayMaker Utils\PlayMakerUtils_FsmVar.cs" />
+     <Compile Include="Assets\PlayMaker Utils\PlayMakerUtils_Serialization.cs" />
      <Compile Include="Assets\PlayMaker\Actions\ActivateGameObject.cs" />
      <Compile Include="Assets\PlayMaker\Actions\AddAnimationClip.cs" />
      <Compile Include="Assets\PlayMaker\Actions\AddComponent.cs" />
@@ -605,12 +612,15 @@
      <Compile Include="Assets\PlayMaker\Actions\iTween\iTweenShakeScale.cs" />
      <Compile Include="Assets\PlayMaker\Actions\iTween\iTweenStop.cs" />
      <Compile Include="Assets\PlayMaker\Include\iTweenFSMEvents.cs" />
+     <Compile Include="Assets\Scripts\MySendMessage.cs" />
+     <Compile Include="Assets\Scripts\MySendMessageReceiveScript.cs" />
      <Compile Include="Assets\Source\CameraIdle.cs" />
      <Compile Include="Assets\Source\CameraShake.cs" />
      <Compile Include="Assets\Source\DebugHelper.cs" />
      <Compile Include="Assets\Source\Grid.cs" />
      <Compile Include="Assets\Source\GridManager.cs" />
      <Compile Include="Assets\Source\Main.cs" />
+     <Compile Include="Assets\Source\Metronom.cs" />
      <Compile Include="Assets\Source\NativeActivity.cs" />
      <Compile Include="Assets\Source\NativeFlurry.cs" />
      <Compile Include="Assets\Source\NativeParse.cs" />
@@ -735,11 +745,11 @@
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>D:/programming/sandbox/soundmatrix/unity/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
- <Reference Include="Parse.Unity">
- <HintPath>D:/programming/sandbox/soundmatrix/unity/Assets/Plugins/Parse.Unity/Parse.Unity.dll</HintPath>
- </Reference>
  <Reference Include="PlayMaker">
  <HintPath>D:/programming/sandbox/soundmatrix/unity/Assets/PlayMaker/PlayMaker.dll</HintPath>
+ </Reference>
+ <Reference Include="Parse.Unity">
+ <HintPath>D:/programming/sandbox/soundmatrix/unity/Assets/Plugins/Parse.Unity/Parse.Unity.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
